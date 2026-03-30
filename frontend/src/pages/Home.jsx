@@ -19,8 +19,8 @@ const Home = () => {
           <span className="inline-flex items-center justify-center px-4 py-1.5 mb-8 text-xs font-bold tracking-widest text-nature-800 uppercase bg-white/60 backdrop-blur-md rounded-full shadow-sm border border-white/40">
             <Leaf size={14} className="mr-2" /> Lifestyle & Wellness
           </span>
-          <h1 className="text-5xl md:text-7xl font-serif text-nature-950 mb-6 drop-shadow-sm font-black leading-tight">
-            Cultivate a Beautiful,<br/>Grounded Life
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-serif text-nature-950 mb-6 drop-shadow-sm font-black leading-tight">
+            Cultivate a Beautiful,<br className="hidden sm:block"/>Grounded Life
           </h1>
           <p className="text-lg md:text-xl text-gray-800 max-w-2xl mx-auto mb-10 opacity-90 font-medium leading-relaxed drop-shadow-sm">
             Embrace a fresh, elegant, and nature-inspired way of living with our carefully curated content, stories, and mindful guides.
