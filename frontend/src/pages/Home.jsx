@@ -1,7 +1,11 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, Leaf } from 'lucide-react';
+import { useBlog } from '../context/BlogContext';
 
 const Home = () => {
+  const { posts } = useBlog();
+  const featuredPosts = posts.filter(p => p.featured).slice(0, 3);
+
   return (
     <div className="flex flex-col animate-fade-in pb-20">
       {/* Hero Section */}
@@ -49,20 +53,16 @@ const Home = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-          {[
-            { img: "https://images.unsplash.com/photo-1512428559087-560fa5ceab42?q=80&w=800&auto=format&fit=crop", cat: "Lifestyle", title: "Bringing the Outdoors Inside", desc: "Learn how to seamlessly integrate botanical elements into your living spaces for a calmer atmosphere." },
-            { img: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=800&auto=format&fit=crop", cat: "Wellness", title: "The Art of Slow Mornings", desc: "Discover morning rituals that set a peaceful tone for your entire day, grounded in mindfulness." },
-            { img: "https://images.unsplash.com/photo-1522204523234-8729aa6e3d5f?q=80&w=800&auto=format&fit=crop", cat: "Travel", title: "Hidden Botanical Gardens", desc: "A photographic journey through some of the world's most breathtaking and secluded floral preserves." }
-          ].map((post, i) => (
-            <Link to="/blog/1" key={i} className="group bg-white rounded-2xl shadow-sm border border-nature-100 overflow-hidden hover:shadow-2xl hover:border-nature-200 transition-all duration-500 transform hover:-translate-y-2 flex flex-col h-full">
+          {featuredPosts.map((post) => (
+            <Link to={`/blog/${post.slug}`} key={post.id} className="group bg-white rounded-2xl shadow-sm border border-nature-100 overflow-hidden hover:shadow-2xl hover:border-nature-200 transition-all duration-500 transform hover:-translate-y-2 flex flex-col h-full">
               <div className="h-64 overflow-hidden relative">
                 <div className="absolute inset-0 bg-nature-900/10 group-hover:bg-transparent transition-colors z-10"></div>
-                <img src={post.img} alt={post.title} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-in-out" />
+                <img src={post.image} alt={post.title} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-in-out" />
               </div>
               <div className="p-8 flex-grow flex flex-col">
-                <span className="text-xs font-bold text-nature-600 uppercase tracking-widest mb-3 block">{post.cat}</span>
+                <span className="text-xs font-bold text-nature-600 uppercase tracking-widest mb-3 block">{post.category}</span>
                 <h3 className="text-2xl font-serif text-gray-900 group-hover:text-nature-700 transition-colors font-bold mb-3">{post.title}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed mb-6 flex-grow">{post.desc}</p>
+                <div className="text-gray-600 text-sm leading-relaxed mb-6 flex-grow line-clamp-3" dangerouslySetInnerHTML={{ __html: post.content }} />
                 <div className="flex items-center text-xs font-bold uppercase tracking-widest text-nature-800 group-hover:text-nature-600 transition-colors mt-auto">
                   Read Article <ArrowRight size={14} className="ml-2 transform group-hover:translate-x-1 transition-transform" />
                 </div>
@@ -78,9 +78,9 @@ const Home = () => {
             <h2 className="text-3xl font-serif mb-12 text-nature-900 font-bold">Explore Our Garden</h2>
             <div className="flex flex-wrap justify-center gap-4">
               {['Home & Living', 'Wellness & Mind', 'Sustainable Travel', 'Personal Stories', 'Nourishing Recipes'].map(cat => (
-                <span key={cat} className="px-6 py-3 border border-nature-200 rounded-full text-nature-700 hover:bg-nature-50 hover:border-nature-400 hover:shadow-md cursor-pointer transition-all duration-300 text-sm font-bold uppercase tracking-wider transform hover:-translate-y-0.5">
+                <Link to={`/blog?category=${cat}`} key={cat} className="px-6 py-3 border border-nature-200 rounded-full text-nature-700 hover:bg-nature-50 hover:border-nature-400 hover:shadow-md cursor-pointer transition-all duration-300 text-sm font-bold uppercase tracking-wider transform hover:-translate-y-0.5">
                   {cat}
-                </span>
+                </Link>
               ))}
             </div>
         </div>
