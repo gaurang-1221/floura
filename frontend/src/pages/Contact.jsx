@@ -1,6 +1,12 @@
+import { Helmet } from 'react-helmet-async';
+
 const Contact = () => {
   return (
     <div className="max-w-2xl mx-auto px-4 py-16">
+      <Helmet>
+        <title>Contact Us | Floura</title>
+        <meta name="description" content="Get in touch with the Floura team. We'd love to hear from you." />
+      </Helmet>
       <div className="text-center mb-10">
         <h1 className="text-4xl font-serif mb-4 text-nature-900">Get in Touch</h1>
         <p className="text-gray-600">We'd love to hear from you. Send us a message below.</p>

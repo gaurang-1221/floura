@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useBlog } from '../context/BlogContext';
 import { useNavigate, Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const Dashboard = () => {
   const { user, logout, unsavePost } = useAuth();
@@ -13,6 +14,9 @@ const Dashboard = () => {
   if (!user) {
     return (
       <div className="max-w-5xl mx-auto px-4 py-24 text-center">
+        <Helmet>
+          <title>Dashboard | Floura</title>
+        </Helmet>
         <h2 className="text-2xl font-serif text-nature-900 mb-6">Please log in to view your dashboard.</h2>
         <Link to="/login" className="bg-nature-600 text-white px-6 py-3 rounded-md hover:bg-nature-700 transition">Go to Login</Link>
       </div>
@@ -37,6 +41,9 @@ const Dashboard = () => {
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-16">
+      <Helmet>
+        <title>Dashboard | Floura</title>
+      </Helmet>
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-3xl md:text-4xl font-serif text-nature-900">User Dashboard</h1>
         <button onClick={handleLogout} className="text-sm font-medium text-red-600 border border-red-200 px-4 py-2 rounded hover:bg-red-50 transition">Log Out</button>

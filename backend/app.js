@@ -22,4 +22,8 @@ app.get('/health', (req, res) => {
 // import authRoutes from './routes/authRoutes.js';
 // app.use('/api/auth', authRoutes);
 
+// Milestone 3: Sitemap Generation
+import sitemapRoutes from './routes/sitemapRoutes.js';
+app.use('/api', sitemapRoutes);
+
 export default app;

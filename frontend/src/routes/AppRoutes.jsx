@@ -1,26 +1,37 @@
 import { Routes, Route } from 'react-router-dom';
+import { lazy, Suspense } from 'react';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 
-// Pages
-import Home from '../pages/Home';
-import BlogList from '../pages/BlogList';
-import BlogPost from '../pages/BlogPost';
-import About from '../pages/About';
-import Contact from '../pages/Contact';
-import Login from '../pages/Login';
-import Register from '../pages/Register';
-import Dashboard from '../pages/Dashboard';
+// Pages - Lazy Loaded
+const Home = lazy(() => import('../pages/Home'));
+const BlogList = lazy(() => import('../pages/BlogList'));
+const BlogPost = lazy(() => import('../pages/BlogPost'));
+const About = lazy(() => import('../pages/About'));
+const Contact = lazy(() => import('../pages/Contact'));
+const Login = lazy(() => import('../pages/Login'));
+const Register = lazy(() => import('../pages/Register'));
+const Dashboard = lazy(() => import('../pages/Dashboard'));
 
-// Admin Pages
-import AdminDashboard from '../pages/admin/AdminDashboard';
-import ManagePosts from '../pages/admin/ManagePosts';
-import ManageUsers from '../pages/admin/ManageUsers';
+// Admin Pages - Lazy Loaded
+const AdminDashboard = lazy(() => import('../pages/admin/AdminDashboard'));
+const ManagePosts = lazy(() => import('../pages/admin/ManagePosts'));
+const ManageUsers = lazy(() => import('../pages/admin/ManageUsers'));
+
+const Loader = () => (
+  <div className="flex h-[80vh] items-center justify-center">
+    <div className="w-12 h-12 border-4 border-nature-200 border-t-nature-600 rounded-full animate-spin"></div>
+  </div>
+);
 
 const Layout = ({ children }) => (
   <div className="flex flex-col min-h-screen">
     <Navbar />
-    <main className="flex-grow">{children}</main>
+    <main className="flex-grow">
+      <Suspense fallback={<Loader />}>
+        {children}
+      </Suspense>
+    </main>
     <Footer />
   </div>
 );

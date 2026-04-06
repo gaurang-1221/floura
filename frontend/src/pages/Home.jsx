@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, Leaf } from 'lucide-react';
 import { useBlog } from '../context/BlogContext';
+import { Helmet } from 'react-helmet-async';
 
 const Home = () => {
   const { posts } = useBlog();
@@ -8,6 +9,10 @@ const Home = () => {
 
   return (
     <div className="flex flex-col animate-fade-in pb-20">
+      <Helmet>
+        <title>Floura | Fresh, elegant & nature-inspired Lifestyle Blog</title>
+        <meta name="description" content="Embrace a fresh, elegant, and nature-inspired way of living with our carefully curated content, stories, and mindful guides." />
+      </Helmet>
       {/* Hero Section */}
       <section className="relative h-[90vh] min-h-[600px] flex items-center justify-center pt-20">
         <div className="absolute inset-0 z-0">

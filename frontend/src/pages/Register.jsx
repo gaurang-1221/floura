@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const Register = () => {
   const [name, setName] = useState('');
@@ -31,6 +32,9 @@ const Register = () => {
 
   return (
     <div className="max-w-md mx-auto px-4 py-20">
+      <Helmet>
+        <title>Sign Up | Floura</title>
+      </Helmet>
       <div className="bg-white p-8 md:p-10 rounded-xl shadow-sm border border-nature-100">
         <h1 className="text-3xl font-serif mb-2 text-center text-nature-900">Join Floura</h1>
         <p className="text-center text-gray-500 text-sm mb-8">Create your account to save posts and read ad-free</p>

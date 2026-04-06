@@ -1,6 +1,12 @@
+import { Helmet } from 'react-helmet-async';
+
 const About = () => {
   return (
     <div className="max-w-3xl mx-auto px-4 py-16 text-center">
+      <Helmet>
+        <title>About Us | Floura</title>
+        <meta name="description" content="Floura is a brand dedicated to blending elegant lifestyle insights with nature-inspired simplicity." />
+      </Helmet>
       <h1 className="text-4xl md:text-5xl font-serif mb-8 text-nature-900">About Floura</h1>
       <div className="h-64 bg-nature-200 rounded-xl mb-10 w-full"></div>
       <p className="text-lg text-gray-700 leading-relaxed mb-6">

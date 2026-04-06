@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { ArrowRight, Filter, Search } from 'lucide-react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useBlog } from '../context/BlogContext';
+import { Helmet } from 'react-helmet-async';
 
 const BlogList = () => {
   const { posts, categories } = useBlog();
@@ -24,6 +25,10 @@ const BlogList = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-32 pt-40 animate-fade-in">
+      <Helmet>
+        <title>Journal | Floura Lifestyle Blog</title>
+        <meta name="description" content="Explore our collection of thoughts, insights, and stories celebrating nature, design, and thoughtful living." />
+      </Helmet>
       <div className="text-center mb-16 max-w-3xl mx-auto">
         <h1 className="text-5xl md:text-6xl font-serif mb-8 text-nature-950 font-black">Our Journal</h1>
         <p className="text-xl text-gray-600 leading-relaxed font-light">Explore our collection of thoughts, insights, and stories celebrating nature, design, and thoughtful living.</p>

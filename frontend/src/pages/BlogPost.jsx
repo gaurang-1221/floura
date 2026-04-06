@@ -2,6 +2,7 @@ import { useParams, Link } from 'react-router-dom';
 import { useBlog } from '../context/BlogContext';
 import { useAuth } from '../context/AuthContext';
 import { Facebook, Twitter, Instagram, Linkedin, Bookmark, BookmarkCheck } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 
 const BlogPost = () => {
   const { slug } = useParams();
@@ -13,6 +14,9 @@ const BlogPost = () => {
   if (!post) {
     return (
       <div className="max-w-4xl mx-auto px-4 py-24 text-center">
+        <Helmet>
+          <title>Post Not Found | Floura</title>
+        </Helmet>
         <h2 className="text-3xl font-serif text-nature-900 mb-4">Post not found</h2>
         <Link to="/blog" className="text-nature-600 hover:underline">Return to Journal</Link>
       </div>
@@ -37,6 +41,10 @@ const BlogPost = () => {
 
   return (
     <article className="animate-fade-in">
+      <Helmet>
+        <title>{post.title} | Floura Blog</title>
+        <meta name="description" content={post.content.replace(/<[^>]+>/g, '').substring(0, 160) + '...'} />
+      </Helmet>
       <header className="max-w-4xl mx-auto px-4 py-16 text-center">
         <span className="text-nature-600 uppercase text-xs font-bold tracking-widest mb-4 block cursor-pointer hover:text-nature-800 transition">
           <Link to={`/blog?category=${post.category}`}>{post.category}</Link>
